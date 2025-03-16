@@ -52,14 +52,18 @@ const STATUS = {
     ABSENT: 4
 };
 
-// Initialize state
-let attendanceData = {
-    subject: '',
-    date: '',
-    day: '',
-    time: '',
-    students: {}
-};
+// Initialize state with a function instead of a global variable
+let attendanceData = null;
+
+function getInitialState() {
+    return {
+        subject: '',
+        date: '',
+        day: '',
+        time: '',
+        students: {}
+    };
+}
 
 // DOM elements
 const currentDateEl = document.getElementById('current-date');
@@ -72,11 +76,17 @@ const copyClipboardBtn = document.getElementById('copy-clipboard');
 
 // Initialize the app
 function init() {
+    // Load data from localStorage FIRST
+    loadFromLocalStorage();
+    
+    // If no data was loaded, initialize with default state
+    if (!attendanceData) {
+        attendanceData = getInitialState();
+    }
+    
+    // Update date and time
     updateDateTime();
     setInterval(updateDateTime, 60000); // Update time every minute
-    
-    // Load data from localStorage
-    loadFromLocalStorage();
     
     // Initialize student list with default values if not loaded
     initializeStudentList();
@@ -331,6 +341,7 @@ function loadFromLocalStorage() {
         const storedData = localStorage.getItem('attendanceData');
         if (storedData) {
             attendanceData = JSON.parse(storedData);
+            console.log("Loaded data from localStorage:", attendanceData);
         }
     } catch (error) {
         console.error('Error loading from localStorage:', error);
