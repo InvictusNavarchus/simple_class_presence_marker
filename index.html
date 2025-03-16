@@ -12,39 +12,61 @@
         <header>
             <h1>Class Presence Marker</h1>
             <div class="date-info">
-                <p id="current-date"></p>
-                <p id="current-day"></p>
-                <p id="current-time"></p>
+                <div><span id="current-date">Date</span></div>
+                <div><span id="current-day">Day</span></div>
+                <div><span id="current-time">Time</span></div>
             </div>
         </header>
 
-        <div class="subject-form">
+        <section class="subject-form">
             <label for="subject-name">Subject Name:</label>
-            <input type="text" id="subject-name" placeholder="Enter subject name" required>
-        </div>
+            <input type="text" id="subject-name" placeholder="Enter subject name">
+            <button id="reset-state" class="reset-btn">Reset</button>
+        </section>
 
-        <div class="attendance-section">
-            <h2>Student Attendance</h2>
-            <p class="status-legend">
-                <span class="status-item"><span class="status-box present"></span> Present</span>
-                <span class="status-item"><span class="status-box permitted"></span> Permitted</span>
-                <span class="status-item"><span class="status-box sick"></span> Sick</span>
-                <span class="status-item"><span class="status-box absent"></span> Absent</span>
-            </p>
-            <div class="student-list" id="student-list">
-                <!-- Student list will be generated here -->
+        <section class="attendance-section">
+            <h2>Attendance</h2>
+            <div class="status-legend">
+                <div class="status-item">
+                    <span class="status-box present"></span> Present
+                </div>
+                <div class="status-item">
+                    <span class="status-box permitted"></span> Permitted
+                </div>
+                <div class="status-item">
+                    <span class="status-box sick"></span> Sick
+                </div>
+                <div class="status-item">
+                    <span class="status-box absent"></span> Absent
+                </div>
             </div>
-        </div>
+            <div class="student-list" id="student-list">
+                <!-- Student items will be generated here -->
+            </div>
+        </section>
 
-        <div class="export-section">
+        <section class="export-section">
             <button id="export-txt" class="export-btn">
-                <i class="fas fa-file-export"></i> Export to TXT
+                Export to TXT
             </button>
             <button id="copy-clipboard" class="export-btn">
-                <i class="fas fa-clipboard"></i> Copy to Clipboard
+                Copy to Clipboard
             </button>
+        </section>
+    </div>
+
+    <!-- Reset Confirmation Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <h3>Reset Attendance</h3>
+            <p>This will clear all attendance data. Are you sure?</p>
+            <div class="modal-buttons">
+                <button id="cancel-reset" class="modal-btn cancel-btn">Cancel</button>
+                <button id="confirm-reset" class="modal-btn confirm-btn">Reset</button>
+            </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

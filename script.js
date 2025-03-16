@@ -73,6 +73,10 @@ const subjectNameEl = document.getElementById('subject-name');
 const studentListEl = document.getElementById('student-list');
 const exportTxtBtn = document.getElementById('export-txt');
 const copyClipboardBtn = document.getElementById('copy-clipboard');
+const resetStateBtn = document.getElementById('reset-state');
+const confirmModal = document.getElementById('confirm-modal');
+const confirmResetBtn = document.getElementById('confirm-reset');
+const cancelResetBtn = document.getElementById('cancel-reset');
 
 // Initialize the app
 function init() {
@@ -233,6 +237,34 @@ function setupEventListeners() {
     
     // Copy to clipboard
     copyClipboardBtn.addEventListener('click', copyToClipboard);
+    
+    // Reset state button
+    resetStateBtn.addEventListener('click', showResetConfirmation);
+    
+    // Modal confirm button
+    confirmResetBtn.addEventListener('click', resetState);
+    
+    // Modal cancel button
+    cancelResetBtn.addEventListener('click', hideResetConfirmation);
+}
+
+// Show reset confirmation modal
+function showResetConfirmation() {
+    confirmModal.style.display = 'flex';
+}
+
+// Hide reset confirmation modal
+function hideResetConfirmation() {
+    confirmModal.style.display = 'none';
+}
+
+// Reset state to initial values
+function resetState() {
+    attendanceData = getInitialState();
+    saveToLocalStorage();
+    subjectNameEl.value = '';
+    renderStudentList();
+    hideResetConfirmation();
 }
 
 // Export to TXT
