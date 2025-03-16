@@ -1,0 +1,233 @@
+:root {
+    --primary-color: #4a6fa5;
+    --present-color: #4caf50;
+    --permitted-color: #ffc107;
+    --sick-color: #2196f3;
+    --absent-color: #f44336;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.date-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.subject-form {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.attendance-section {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.status-legend {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    margin: 0.3rem;
+}
+
+.status-box {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.status-box.present {
+    background-color: var(--present-color);
+}
+
+.status-box.permitted {
+    background-color: var(--permitted-color);
+}
+
+.status-box.sick {
+    background-color: var(--sick-color);
+}
+
+.status-box.absent {
+    background-color: var(--absent-color);
+}
+
+.student-list {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.student-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+}
+
+.student-name {
+    flex: 1;
+}
+
+.attendance-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+
+.attendance-checkbox:checked {
+    background-color: var(--present-color);
+    border-color: var(--present-color);
+}
+
+.attendance-checkbox.permitted {
+    background-color: var(--permitted-color);
+    border-color: var(--permitted-color);
+}
+
+.attendance-checkbox.sick {
+    background-color: var(--sick-color);
+    border-color: var(--sick-color);
+}
+
+.attendance-checkbox.absent {
+    background-color: var(--absent-color);
+    border-color: var(--absent-color);
+}
+
+.attendance-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.export-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.export-btn {
+    flex: 1;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.export-btn:hover {
+    opacity: 0.9;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 500px) {
+    .date-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .export-section {
+        flex-direction: column;
+    }
+    
+    .student-item {
+        padding: 1.2rem 1rem;
+    }
+    
+    .attendance-checkbox {
+        width: 35px;
+        height: 35px;
+    }
+}

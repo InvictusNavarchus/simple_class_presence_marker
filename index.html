@@ -1,0 +1,51 @@
+marker/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Presence Marker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Class Presence Marker</h1>
+            <div class="date-info">
+                <p id="current-date"></p>
+                <p id="current-day"></p>
+                <p id="current-time"></p>
+            </div>
+        </header>
+
+        <div class="subject-form">
+            <label for="subject-name">Subject Name:</label>
+            <input type="text" id="subject-name" placeholder="Enter subject name" required>
+        </div>
+
+        <div class="attendance-section">
+            <h2>Student Attendance</h2>
+            <p class="status-legend">
+                <span class="status-item"><span class="status-box present"></span> Present</span>
+                <span class="status-item"><span class="status-box permitted"></span> Permitted</span>
+                <span class="status-item"><span class="status-box sick"></span> Sick</span>
+                <span class="status-item"><span class="status-box absent"></span> Absent</span>
+            </p>
+            <div class="student-list" id="student-list">
+                <!-- Student list will be generated here -->
+            </div>
+        </div>
+
+        <div class="export-section">
+            <button id="export-txt" class="export-btn">
+                <i class="fas fa-file-export"></i> Export to TXT
+            </button>
+            <button id="copy-clipboard" class="export-btn">
+                <i class="fas fa-clipboard"></i> Copy to Clipboard
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
