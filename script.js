@@ -77,6 +77,11 @@ const resetStateBtn = document.getElementById('reset-state');
 const confirmModal = document.getElementById('confirm-modal');
 const confirmResetBtn = document.getElementById('confirm-reset');
 const cancelResetBtn = document.getElementById('cancel-reset');
+const presentCountEl = document.getElementById('present-count');
+const permittedCountEl = document.getElementById('permitted-count');
+const sickCountEl = document.getElementById('sick-count');
+const absentCountEl = document.getElementById('absent-count');
+const uncheckedCountEl = document.getElementById('unchecked-count');
 
 // Initialize the app
 function init() {
@@ -97,6 +102,9 @@ function init() {
     
     // Render student list
     renderStudentList();
+    
+    // Update attendance counters
+    updateAttendanceCounters();
     
     // Set up event listeners
     setupEventListeners();
@@ -207,7 +215,45 @@ function toggleAttendance(name) {
     }
     
     saveToLocalStorage();
+    updateAttendanceCounters();
     return attendanceData.students[name];
+}
+
+// Update attendance counters
+function updateAttendanceCounters() {
+    let presentCount = 0;
+    let permittedCount = 0;
+    let sickCount = 0;
+    let absentCount = 0;
+    let uncheckedCount = 0;
+    
+    for (const name of studentNames) {
+        const status = attendanceData.students[name] || STATUS.UNCHECKED;
+        
+        switch (status) {
+            case STATUS.PRESENT:
+                presentCount++;
+                break;
+            case STATUS.PERMITTED:
+                permittedCount++;
+                break;
+            case STATUS.SICK:
+                sickCount++;
+                break;
+            case STATUS.ABSENT:
+                absentCount++;
+                break;
+            case STATUS.UNCHECKED:
+                uncheckedCount++;
+                break;
+        }
+    }
+    
+    presentCountEl.textContent = presentCount;
+    permittedCountEl.textContent = permittedCount;
+    sickCountEl.textContent = sickCount;
+    absentCountEl.textContent = absentCount;
+    uncheckedCountEl.textContent = uncheckedCount;
 }
 
 // Set up event listeners
@@ -264,6 +310,7 @@ function resetState() {
     saveToLocalStorage();
     subjectNameEl.value = '';
     renderStudentList();
+    updateAttendanceCounters();
     hideResetConfirmation();
 }
 
