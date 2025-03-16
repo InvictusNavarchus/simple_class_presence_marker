@@ -138,6 +138,14 @@ h2 {
     font-size: 1rem;
 }
 
+.student-number {
+    min-width: 30px;
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
 .student-name {
     flex: 1;
 }
@@ -224,6 +232,11 @@ h2 {
     
     .student-item {
         padding: 1.2rem 1rem;
+    }
+    
+    .student-number {
+        min-width: 25px;
+        font-size: 0.9rem;
     }
     
     .attendance-checkbox {

@@ -133,11 +133,15 @@ function initializeStudentList() {
 function renderStudentList() {
     studentListEl.innerHTML = '';
     
-    studentNames.forEach(name => {
+    studentNames.forEach((name, index) => {
         const status = attendanceData.students[name] || STATUS.UNCHECKED;
         
         const studentItem = document.createElement('div');
         studentItem.className = 'student-item';
+        
+        const studentNumber = document.createElement('div');
+        studentNumber.className = 'student-number';
+        studentNumber.textContent = (index + 1) + '.';
         
         const studentName = document.createElement('div');
         studentName.className = 'student-name';
@@ -150,6 +154,7 @@ function renderStudentList() {
         
         updateCheckboxStyle(checkbox, status);
         
+        studentItem.appendChild(studentNumber);
         studentItem.appendChild(studentName);
         studentItem.appendChild(checkbox);
         studentListEl.appendChild(studentItem);
@@ -258,16 +263,16 @@ function exportToTxt() {
     }
     
     content += `PRESENT (${presentStudents.length}):\n`;
-    presentStudents.forEach(name => content += `- ${name}\n`);
+    presentStudents.forEach((name, index) => content += `${index + 1}. ${name}\n`);
     
     content += `\nPERMITTED (${permittedStudents.length}):\n`;
-    permittedStudents.forEach(name => content += `- ${name}\n`);
+    permittedStudents.forEach((name, index) => content += `${index + 1}. ${name}\n`);
     
     content += `\nSICK (${sickStudents.length}):\n`;
-    sickStudents.forEach(name => content += `- ${name}\n`);
+    sickStudents.forEach((name, index) => content += `${index + 1}. ${name}\n`);
     
     content += `\nABSENT (${absentStudents.length}):\n`;
-    absentStudents.forEach(name => content += `- ${name}\n`);
+    absentStudents.forEach((name, index) => content += `${index + 1}. ${name}\n`);
     
     // Create download link
     const blob = new Blob([content], { type: 'text/plain' });
@@ -307,16 +312,16 @@ function copyToClipboard() {
     }
     
     content += `PRESENT (${presentStudents.length}):\n`;
-    presentStudents.forEach(name => content += `- ${name}\n`);
+    presentStudents.forEach((name, index) => content += `${index + 1}. ${name}\n`);
     
     content += `\nPERMITTED (${permittedStudents.length}):\n`;
-    permittedStudents.forEach(name => content += `- ${name}\n`);
+    permittedStudents.forEach((name, index) => content += `${index + 1}. ${name}\n`);
     
     content += `\nSICK (${sickStudents.length}):\n`;
-    sickStudents.forEach(name => content += `- ${name}\n`);
+    sickStudents.forEach((name, index) => content += `${index + 1}. ${name}\n`);
     
     content += `\nABSENT (${absentStudents.length}):\n`;
-    absentStudents.forEach(name => content += `- ${name}\n`);
+    absentStudents.forEach((name, index) => content += `${index + 1}. ${name}\n`);
     
     navigator.clipboard.writeText(content).then(() => {
         alert('Attendance copied to clipboard!');
